@@ -399,9 +399,7 @@ h6, .h6 {
   padding-left: 15px;
 }
 .main-right{
-    width:50%;
-    float:right;
-	  min-height: 1px;
+  min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
 }
