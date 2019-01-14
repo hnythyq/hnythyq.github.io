@@ -1,286 +1,211 @@
+<!--Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8" />
-		<title>JS生成验证码</title>
-		<style>
-		* {
-			margin: 0px;
-			padding: 0px;
-		} 
-		div{
-			line-height: 40px;
-			font-size: 20px;
-		}
-		#start{
-			width:1920px;
-			height:150px;
-			background-color:#115d8a;
-			font-size: 30px;
-			font-family:"Microsoft YaHei"; 
-			color:white;
-			line-height:60px;
-		}
-		#tit{
-			font-size:35px;
-			font-family:"FangSong";
-		}
-		
-		#end{
-			width:1920px;
-			height:40px;
-			background-color:#115d8a;
-			font-size: 20px;
-			color:white;
-			border-bottom:1px;
-			border-bottom-color:#0c4161;
-			border-style:solid;
-			line-height: 30px;
-			margin-top:60px;
-		}
-		#end1{
-			width:1920px;
-			height:100px;
-			background-color:#115d8a;
-			font-size: 20px;
-			color:white;
-			border-top:1px;
-			border-top-color:#146ea3;
-			border-style:solid;
-		}
-		#tabs div.a1{
-			border:0px;
-			height:130px;
-		}
-		#tabs div.a2{
-			border:0px;
-			height:380px;
-		}
-		#tabs div.part1{
-			border:0px;
-			height:300px;
-		}
-		#tabs div.part2{
-			border:0px;
-			height:30px;
-			text-align:center;
-			vertical-align:middle;
-		}
-		#tabs div.part3{
-			border:0px;
-			height:30px;
-			text-align:center;
-			vertical-align:middle;
-		}
-		#tabs div.part4{
-			border:0px;
-			height:30px;
-			text-align:center;
-			vertical-align:middle;
-		}
-		.code {
-			text-align:center;
-			vertical-align:middle;
-		}
-		#tabs span.h1{
-			font-size:20px;
-			font-family:"宋体";
-		}
-		#tabs{
-     		width:1000px; height:560px; padding:5px; margin:20px;
-			padding-left:460px;
-		}
-		#tabs ul{
-			 list-style:none; display:block; height:30px; 
-		}
-		#tabs ul li{
-			 float:left; width:130px; height:28px; line-height:28px; text-align:center;
-			 display:inline-block;margin:0px 3px; border:1px solid #aaa;border-bottom:none;
-			 cursor:pointer; background:#fff; list-style:none;
-			 font-family:Calibri;font-weight:bold;
-			 color:#115d8a;
-		}
-		#tabs ul li.on{
-			 border:2px solid #115d8a; color:white;background-color:#115d8a;
-		}
-		#tabs div{
-			 height:580px; line-height:25px; border:2px solid #336699;border-top:2px #115d8a solid;padding:5px;
-		}
-		.hide{display:none;}
-		</style>
-		<script language="javascript" type="text/javascript">  
-		var animal;//全局定义验证码
-		var num;
-		function createCode() {			
-    		var xx=new XMLHttpRequest();
-			xx.open("GET","test.php",true);
-			xx.send();
-			xx.onreadystatechange=function(){
-			if(xx.readyState==4&&xx.status==200)
-				document.getElementById("total").innerHTML="总测试次数："+xx.responseText;	
-			}
-			
-			var xx1=new XMLHttpRequest();
-			xx1.open("GET","test1.php",true);
-			xx1.send();
-			xx1.onreadystatechange=function(){
-			if(xx1.readyState==4&&xx1.status==200)
-				document.getElementById("correct").innerHTML="正确试次数："+xx1.responseText;	
-			}
+<html lang="zxx">
+<head>
+    <title>Conjoint a Corporate Category Bootstrap Responsive website Template | Home :: w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="keywords" content="Conjoint Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-		    animal = "";
-		    num = "";
-			animalch = "";
-			animaltri="";
-		    var checkCode = document.getElementById("checkCode");
-		    var selectAnimal = new Array("horse","tiger","cat","dog","panda","lion","elephant","bear","sea lion","rabbit","kangaroo","pig","chicken","sheep","pirate ship","monkey","penguin","butterfly","banana","frog","pineapple","fish","bird","street sign","peacock","flower","plane","car","bicycle","mushroom");
-			var selectAnimalch = new Array("马","老虎","猫","狗","熊猫","狮子","大象","熊","海狮","兔子","袋鼠","猪","鸡","羊","船","猴子","企鹅","蝴蝶","香蕉","青蛙","菠萝","鱼","鸟","路标","孔雀","花","飞机","汽车","自行车","蘑菇");
-		   	var selectNum=new Array(0,1,2,3,4,5,6,7,8,9);
-			var Animaltrick=new Array("猎犬","门垫","纸巾","狼","泰迪熊","野犬","美洲赤狗","公牛","鼹鼠","波士顿狗","野犬","猎犬","公鸭","黑斑羚","降落伞","树懒","咖啡壶","犁","耳朵","西蓝花","苹果","算盘","风筝","玩具店","海胆","胡瓜","蛋糕","球拍","卷轴","帽子");
-
-		    var animalIndex = Math.floor(Math.random() * 30);
-		    animal += selectAnimal[animalIndex];
-			animalch += selectAnimalch[animalIndex];
-			animaltri+=Animaltrick[animalIndex];
-
-		    var numIndex = Math.floor(Math.random() * 10);
-			var typeIndex=Math.floor(Math.random() * 100)+1;
-		    num += selectNum[numIndex];
-		    if (checkCode) {
-		        checkCode.className = "code";
-		        checkCode.src = "./image/"+animal+"/"+typeIndex+"/"+animal+num+"_"+typeIndex+num+".jpg";
-		    }
-		}
-		   
-		function validate() {
-		    var inputCode1 = document.getElementById("input1").value;
-		    var inputCode2 = document.getElementById("input2").value;
-		    if (inputCode1.length <= 0) {
-		        alert("请输入动物名！");
-		    }
-		    else if(inputCode2.lenth<=0){
-		    	alert("请输入数字！");
-		    }
-		     else if (inputCode1 != animalch || inputCode2 !=num) {
-				 var mychar="";
-				 mychar+="验证码输入错误！正确是："+animalch+num+"\n googlenet识别为："+animaltri;
-		        alert(mychar);
-				var xx=new XMLHttpRequest();
-				xx.open("GET","update2.php",true);
-				xx.send();
-		    	createCode();//刷新验证码   
-		    } else {
-				var xx=new XMLHttpRequest();
-				alert("验证码输入正确！"+"\n googlenet识别为："+animaltri);
-				xx.open("GET","update.php",true);
-				xx.send();
-		    	createCode();
-		    	
-		    }
-		}
-		
-		window.onload=function(){
-        	var oTab = document.getElementById("tabs")
-        	var li = document.getElementsByTagName("li");
-        	var div = oTab.getElementsByTagName("div");//oTab.get...是为了定义className作用对象为id为tabs下的所有文本div
-        
-        	for(var i=0;i<li.length;i++){//获取所有i编号的元素
-            	li[i].index = i;  //定义一个index属性对li进行编号
-            	li[i].onclick = function(){//再注册一个点击事件，当点击的时候所有标签都恢复最初状态
-            	for(var n=0;n<li.length;n++){//这步是相对于未被点击部分的样式
-                	li[n].className = "";
-					createCode();
-                	div[3*n].className = "hide";
-            	}
-            	this.className = "on";//再对点击事件添加相应的属性
-            	div[3*this.index].className = "";//通过之前的index编号绑定的指定div
-            	}
-        	}
-    	}
-		
-		</script>
-	</head>
-	<body >
-    	<div id='start' align="center">
-          <span>第十届全国大学生信息安全竞赛</span></br>
-    	  <span id='tit'>基于对抗样本和透明水印的验证码</span></br>
-    	</div>
-        
-        <div id="tabs">
-            <ul>
-            <li class="on">Introduction</li>
-            <li>Testbed</li>
-            </ul>
-        
-            <div>
-            <span class="h1">项目成员信息：</span>
-            <div class="a1" align="center">
-            	<table border="1">
-                <tr>
-                    <td>小组成员</td>
-                    <td>专业</td>
-                    <td>联系方式</td>
-                </tr>
-                 <tr>
-                    <td>林志贤</td>
-                    <td>信息安全</td>
-                    <td>1529825719@qq.com</td>
-                </tr>
-                <tr>
-                    <td>盖娜</td>
-                    <td>信息安全</td>
-                    <td>912348636@qq.com</td>
-                </tr>
-                <tr>
-                    <td>韩风</td>
-                    <td>信息安全</td>
-                    <td>1134115960@qq.com</td>
-                </tr>
-                <tr>
-                    <td>贺培轩</td>
-                    <td>信息安全</td>
-                    <td>602097964@qq.com</td>
-                </tr>
-                </table>
-            </div>
-            
-            <span class="h1">项目大体思路：</span>
-            
-            <div class="a2" align="center">
-            <image src="content.png"></image>
-            </div>
-               
-            </div>
-            <div class="hide">
-             	<div class="part1">
-                    <input type="image" onClick="createCode()" readonly id="checkCode" class="code" style="width:300px;height:300px;margin:0 auto;display:block;    " />		    
-                </div>
-                <div class="part2">
-                    <span>动物名称:</span>
-                    <input id="input1" type="text" style="width:175px;height:20px;"/>    
-                </div>
-                <div class="part3">
-                    <span>数字号码:</span>
-                    <input id="input2" type="text" style="width:175px;height:20px;"/>
-                </div>
-                <div class="part4"> 
-                         <input id="Button1" onclick="validate()" type="button" value="确定"  style="height:20px;"/>			
-                </div>
-                <p>标签提示：马,老虎,猫,狗,熊猫,狮子,大象,熊,海狮,兔子,袋鼠,猪,鸡,羊,船,猴子,企鹅,蝴蝶,香蕉,青蛙,菠萝,鱼,鸟,路标,孔雀,花,飞机,汽车,自行车,蘑菇</p>
-                <p id="total"></p>
-                <p id="correct"></p>
-            </div>
-    		
-            </div>    
-        
-		
-        
-        <div id='end' align="center">
-          <span>Contact us for more details</span></br>
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- Custom Theme files -->
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="all">
+    <!-- font-awesome icons -->
+    <link href="css/fontawesome-all.min.css" rel="stylesheet">
+    <!-- //Custom Theme files -->
+    <!-- online-fonts -->
+	<link href="//fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+   <!-- //online-fonts -->
+</head>
+<body>
+    <div class="sidenav text-center">
+		<div class="side_top">
+			<img src="images/about.jpg" alt="news image" class="img-fluid navimg">
+			<h1 class="top_hd mt-2"><a href="index.html">Conjoint</a></h1>
+			<p class="top_hdp mt-2">Fermentum lobortis non tristique ante proin sociis</p>
         </div>
-        <div id='end1'>
-    	  <div align="center" >Copyright © 2016-2017 National College Student Information Securtity Contest</div>
-          <div align="center" >Zhixian Lin, Na Gai, Peixuan HE and Feng Han | All Rights Reserved</div>
-    	</div>
-	</body>
+		<!-- header -->
+        <header>
+			<div class="nav-top">
+				<nav class="mnu mx-auto">
+                    <label for="drop" class="toggle">Menu</label>
+                    <input type="checkbox" id="drop">
+						<ul class="menu">
+							<li class="active"><a href="#home" class="scroll">Home</a></li>
+							 <li class="mt-sm-3"><a href="#about" class="scroll">About</a></li>
+							<li class="mt-sm-3"><a href="#services" class="scroll">Services</a></li>
+							<li class="mt-sm-3"><a href="#news" class="scroll">News</a></li>
+                            <li class="mt-sm-3"><a href="#contact" class="scroll">Contact</a></li>
+                        </ul>
+				</nav>
+			</div>
+		</header>
+        <!-- //header -->
+    </div>
+    <div class="main">
+        <div class="banner-text-w3ls" id="home">
+			<div class="container">
+                <div class="mx-auto text-center">
+                    <h3>Nibh eleifend nulla nascetur pharetra
+				</h3>
+					<p class="banp mx-auto mt-3">Nulla pellentesque mi non laoreet eleifend. Integer porttitor mollisar lorem, at molestie arcu  </p>
+					<a class="btn btn-primary mt-lg-5 mt-3 agile-link-bnr" href="#about" role="button">Learn More</a>
+                </div>
+            </div>
+        </div>
+		<!-- about -->
+<section class="slide-wrapper" id="about">
+	<h2 class="w3_head mb-4">About Me </h2>
+	<h4 class="main_hd"> Fermentum lobortis non tristique ante proin sociis <br>accumsan lobortis auctor etiam.</h4>
+	<p class="iner mt-md-5"> Nunc fermentum adipiscing tempor cursus nascetur adipiscing adipiscing. Primis aliquam mus lacinia lobortis phasellus suscipit. Fermentum lobortis non tristique ante proin sociis accumsan lobortis. Auctor etiam porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum integer purus sapien. Nibh eleifend nulla nascetur pharetra commodo mi augue interdum tellus. Ornare cursus augue feugiat sodales velit lorem. Semper elementum ullamcorper lacinia natoque aenean scelerisque.</p>
+</section>
+<!-- //about -->
+<!-- services -->
+<section class="services" id="services">
+	<div class="container">
+		<h3 class="w3_head mb-4 text-left"> Services</h3>
+		<p class="iner mt-md-5 text-left"> Nunc fermentum adipiscing tempor cursus nascetur adipiscing adipiscing. Primis aliquam mus lacinia lobortis.Nunc fermentum adipiscing tempor cursus nascetur adipiscing adipiscing. </p>
+			<ul class="list-unstyled mt-5">
+				<li>
+					<div class="row">
+						<div class="col-2 ic-lft">
+							<span class="fa fa-code"></span>
+						</div>
+						<div class="col-10">
+							<h6>Fermentum adipiscing </h6>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="row">
+						<div class="col-2 ic-lft">
+							<span class="fa fa-cubes"></span>
+						</div>
+						<div class="col-10">
+							<h6>Fermentum lobortis </h6>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="row">
+						<div class="col-2 ic-lft">
+							<span class="fa fa-book"></span>
+						</div>
+						<div class="col-10">
+							<h6>Tristique ante </h6>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="row">
+						<div class="col-2 ic-lft">
+							<span class="fa fa-coffee"></span>
+						</div>
+						<div class="col-10">
+							<h6>Nascetur adipiscing</h6>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="row">
+						<div class="col-2 ic-lft">
+							<span class="fa fa-bolt"></span>
+						</div>
+						<div class="col-10">
+							<h6>Primis aliquam mus</h6>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="row">
+						<div class="col-2 ic-lft">
+							<span class="fa fa-cog"></span>
+						</div>
+						<div class="col-10">
+							<h6>Lobortis phasellus</h6>
+						</div>
+					</div>
+				</li>
+			</ul>
+	</div>
+</section>
+		<!-- //services -->
+		<!-- news -->
+       <div class="news" id="news">
+		<h3 class="w3_head mb-4 text-left"> News</h3>
+		<p class="iner mt-md-5 text-left"> Nunc fermentum adipiscing tempor cursus nascetur adipiscing adipiscing. Primis aliquam mus lacinia lobortis.Nunc fermentum adipiscing tempor cursus nascetur adipiscing adipiscing. </p>
+				<div class="row news-grids-left mt-5">
+					<div class="col-lg-5 news_top">
+						<img src="images/g1.jpg" alt="news image" class="img-fluid">
+					</div>
+					<div class="col-lg-7 news_top1">
+						<h5>Nulla pellentesque</h5>
+						<p class="mt-3">Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer adipiscing ornare amet.</p>
+					</div>
+				</div>
+				<div class="row news-grids-middle">
+					<div class="col-lg-5 news_top">
+						<img src="images/g2.jpg" alt="news image" class="img-fluid">
+					</div>
+					<div class="col-lg-7 news_top1">
+						<h5>Nulla pellentesque</h5>
+						<p class="mt-3">Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer adipiscing ornare amet.</p>
+					</div>
+				</div>
+				<div class="row news-grids-right">
+					<div class="col-lg-5 news_top">
+						<img src="images/g3.jpg" alt="news image" class="img-fluid">
+					</div>
+					<div class="col-lg-7 news_top1">
+						<h5>Nulla pellentesque</h5>
+						<p class="mt-3">Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer adipiscing ornare amet.</p>
+					</div>
+				</div>	
+				
+		</div>
+<!-- //news -->
+<!-- contact -->
+	 <section class="wedo" id="contact">
+	<h3 class="w3_head mb-4 text-left"> Contact Me</h3>
+	<p class="iner mt-md-5 text-left"> Nunc fermentum adipiscing tempor cursus nascetur adipiscing adipiscing. Primis aliquam mus lacinia lobortis.Nunc fermentum adipiscing tempor cursus nascetur adipiscing adipiscing. </p>
+		<div class="contact_grid_right mt-5 mx-auto text-left">
+				<form action="#" method="post">
+					<div class="row contact_top">
+						<div class="col-sm-6">
+							<input type="text" name="Name" placeholder="Name" required="">
+						</div>
+						<div class="col-sm-6">
+							<input type="email" name="Email" placeholder="Email" required="">
+						</div>
+					</div>	
+						<input type="text" name="Name" placeholder="Name" required="">
+						<textarea name="Message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Message...</textarea>
+						<button type="submit" class="btn">Send Message</button>
+						<button type="reset" class="btn">Reset</button>
+						<div class="clearfix"></div>
+				</form>
+			</div>
+			<div class="cpy-right text-center">
+				<p>© 2018 Conjoint. All rights reserved | Design by
+					<a href="http://w3layouts.com"> W3layouts.</a>
+				</p>
+			</div>
+	</section>
+	 <!-- //contact -->
+    </div>
+   
+</body>
 </html>
