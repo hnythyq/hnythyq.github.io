@@ -391,6 +391,46 @@ h6, .h6 {
   font-size: 1rem;
 }
 
+.main-left{
+    width:50%;
+    float:left;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.main-right{
+    width:50%;
+    float:right;
+	  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.date {
+  margin-top: 0.5rem !important;
+  font-family:Times New Roman;
+}
+
+.date1 {
+  margin-top: 0.5rem !important;
+  height: 20.25rem !important;
+  font-family:Times New Roman;
+}
+
+  .tech {
+    margin-top: 3rem !important;
+	font-family:Times New Roman;
+  }
+
+  .tech1{
+    margin-top: 1.5rem !important;
+	font-family:Times New Roman;
+  } 
+ 
+ .edu{
+	font-family:Times New Roman;
+ }
+
 .lead {
   font-size: 1.25rem;
   font-weight: 300;
