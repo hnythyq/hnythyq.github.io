@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>JS生成验证码</title>
+		<style>
+		* {
+			margin: 0px;
+			padding: 0px;
+		} 
+		div{
+			line-height: 40px;
+			font-size: 20px;
+		}
+		#start{
+			width:1920px;
+			height:150px;
+			background-color:#115d8a;
+			font-size: 30px;
+			font-family:"Microsoft YaHei"; 
+			color:white;
+			line-height:60px;
+		}
+		#tit{
+			font-size:35px;
+			font-family:"FangSong";
+		}
+		
+		#end{
+			width:1920px;
+			height:40px;
+			background-color:#115d8a;
+			font-size: 20px;
+			color:white;
+			border-bottom:1px;
+			border-bottom-color:#0c4161;
+			border-style:solid;
+			line-height: 30px;
+			margin-top:60px;
+		}
+		#end1{
+			width:1920px;
+			height:100px;
+			background-color:#115d8a;
+			font-size: 20px;
+			color:white;
+			border-top:1px;
+			border-top-color:#146ea3;
+			border-style:solid;
+		}
+		#tabs div.a1{
+			border:0px;
+			height:130px;
+		}
+		#tabs div.a2{
+			border:0px;
+			height:380px;
+		}
+		#tabs div.part1{
+			border:0px;
+			height:300px;
+		}
+		#tabs div.part2{
+			border:0px;
+			height:30px;
+			text-align:center;
+			vertical-align:middle;
+		}
+		#tabs div.part3{
+			border:0px;
+			height:30px;
+			text-align:center;
+			vertical-align:middle;
+		}
+		#tabs div.part4{
+			border:0px;
+			height:30px;
+			text-align:center;
+			vertical-align:middle;
+		}
+		.code {
+			text-align:center;
+			vertical-align:middle;
+		}
+		#tabs span.h1{
+			font-size:20px;
+			font-family:"宋体";
+		}
+		#tabs{
+     		width:1000px; height:560px; padding:5px; margin:20px;
+			padding-left:460px;
+		}
+		#tabs ul{
+			 list-style:none; display:block; height:30px; 
+		}
+		#tabs ul li{
+			 float:left; width:130px; height:28px; line-height:28px; text-align:center;
+			 display:inline-block;margin:0px 3px; border:1px solid #aaa;border-bottom:none;
+			 cursor:pointer; background:#fff; list-style:none;
+			 font-family:Calibri;font-weight:bold;
+			 color:#115d8a;
+		}
+		#tabs ul li.on{
+			 border:2px solid #115d8a; color:white;background-color:#115d8a;
+		}
+		#tabs div{
+			 height:580px; line-height:25px; border:2px solid #336699;border-top:2px #115d8a solid;padding:5px;
+		}
+		.hide{display:none;}
+		</style>
+		<script language="javascript" type="text/javascript">  
+		var animal;//全局定义验证码
+		var num;
+		function createCode() {			
+    		var xx=new XMLHttpRequest();
+			xx.open("GET","test.php",true);
+			xx.send();
+			xx.onreadystatechange=function(){
+			if(xx.readyState==4&&xx.status==200)
+				document.getElementById("total").innerHTML="总测试次数："+xx.responseText;	
+			}
+			
+			var xx1=new XMLHttpRequest();
+			xx1.open("GET","test1.php",true);
+			xx1.send();
+			xx1.onreadystatechange=function(){
+			if(xx1.readyState==4&&xx1.status==200)
+				document.getElementById("correct").innerHTML="正确试次数："+xx1.responseText;	
+			}
+
+		    animal = "";
+		    num = "";
+			animalch = "";
+			animaltri="";
+		    var checkCode = document.getElementById("checkCode");
+		    var selectAnimal = new Array("horse","tiger","cat","dog","panda","lion","elephant","bear","sea lion","rabbit","kangaroo","pig","chicken","sheep","pirate ship","monkey","penguin","butterfly","banana","frog","pineapple","fish","bird","street sign","peacock","flower","plane","car","bicycle","mushroom");
+			var selectAnimalch = new Array("马","老虎","猫","狗","熊猫","狮子","大象","熊","海狮","兔子","袋鼠","猪","鸡","羊","船","猴子","企鹅","蝴蝶","香蕉","青蛙","菠萝","鱼","鸟","路标","孔雀","花","飞机","汽车","自行车","蘑菇");
+		   	var selectNum=new Array(0,1,2,3,4,5,6,7,8,9);
+			var Animaltrick=new Array("猎犬","门垫","纸巾","狼","泰迪熊","野犬","美洲赤狗","公牛","鼹鼠","波士顿狗","野犬","猎犬","公鸭","黑斑羚","降落伞","树懒","咖啡壶","犁","耳朵","西蓝花","苹果","算盘","风筝","玩具店","海胆","胡瓜","蛋糕","球拍","卷轴","帽子");
+
+		    var animalIndex = Math.floor(Math.random() * 30);
+		    animal += selectAnimal[animalIndex];
+			animalch += selectAnimalch[animalIndex];
+			animaltri+=Animaltrick[animalIndex];
+
+		    var numIndex = Math.floor(Math.random() * 10);
+			var typeIndex=Math.floor(Math.random() * 100)+1;
+		    num += selectNum[numIndex];
+		    if (checkCode) {
+		        checkCode.className = "code";
+		        checkCode.src = "./image/"+animal+"/"+typeIndex+"/"+animal+num+"_"+typeIndex+num+".jpg";
+		    }
+		}
+		   
+		function validate() {
+		    var inputCode1 = document.getElementById("input1").value;
+		    var inputCode2 = document.getElementById("input2").value;
+		    if (inputCode1.length <= 0) {
+		        alert("请输入动物名！");
+		    }
+		    else if(inputCode2.lenth<=0){
+		    	alert("请输入数字！");
+		    }
+		     else if (inputCode1 != animalch || inputCode2 !=num) {
+				 var mychar="";
+				 mychar+="验证码输入错误！正确是："+animalch+num+"\n googlenet识别为："+animaltri;
+		        alert(mychar);
+				var xx=new XMLHttpRequest();
+				xx.open("GET","update2.php",true);
+				xx.send();
+		    	createCode();//刷新验证码   
+		    } else {
+				var xx=new XMLHttpRequest();
+				alert("验证码输入正确！"+"\n googlenet识别为："+animaltri);
+				xx.open("GET","update.php",true);
+				xx.send();
+		    	createCode();
+		    	
+		    }
+		}
+		
+		window.onload=function(){
+        	var oTab = document.getElementById("tabs")
+        	var li = document.getElementsByTagName("li");
+        	var div = oTab.getElementsByTagName("div");//oTab.get...是为了定义className作用对象为id为tabs下的所有文本div
+        
+        	for(var i=0;i<li.length;i++){//获取所有i编号的元素
+            	li[i].index = i;  //定义一个index属性对li进行编号
+            	li[i].onclick = function(){//再注册一个点击事件，当点击的时候所有标签都恢复最初状态
+            	for(var n=0;n<li.length;n++){//这步是相对于未被点击部分的样式
+                	li[n].className = "";
+					createCode();
+                	div[3*n].className = "hide";
+            	}
+            	this.className = "on";//再对点击事件添加相应的属性
+            	div[3*this.index].className = "";//通过之前的index编号绑定的指定div
+            	}
+        	}
+    	}
+		
+		</script>
+	</head>
+	<body >
+    	<div id='start' align="center">
+          <span>第十届全国大学生信息安全竞赛</span></br>
+    	  <span id='tit'>基于对抗样本和透明水印的验证码</span></br>
+    	</div>
+        
+        <div id="tabs">
+            <ul>
+            <li class="on">Introduction</li>
+            <li>Testbed</li>
+            </ul>
+        
+            <div>
+            <span class="h1">项目成员信息：</span>
+            <div class="a1" align="center">
+            	<table border="1">
+                <tr>
+                    <td>小组成员</td>
+                    <td>专业</td>
+                    <td>联系方式</td>
+                </tr>
+                 <tr>
+                    <td>林志贤</td>
+                    <td>信息安全</td>
+                    <td>1529825719@qq.com</td>
+                </tr>
+                <tr>
+                    <td>盖娜</td>
+                    <td>信息安全</td>
+                    <td>912348636@qq.com</td>
+                </tr>
+                <tr>
+                    <td>韩风</td>
+                    <td>信息安全</td>
+                    <td>1134115960@qq.com</td>
+                </tr>
+                <tr>
+                    <td>贺培轩</td>
+                    <td>信息安全</td>
+                    <td>602097964@qq.com</td>
+                </tr>
+                </table>
+            </div>
+            
+            <span class="h1">项目大体思路：</span>
+            
+            <div class="a2" align="center">
+            <image src="content.png"></image>
+            </div>
+               
+            </div>
+            <div class="hide">
+             	<div class="part1">
+                    <input type="image" onClick="createCode()" readonly id="checkCode" class="code" style="width:300px;height:300px;margin:0 auto;display:block;    " />		    
+                </div>
+                <div class="part2">
+                    <span>动物名称:</span>
+                    <input id="input1" type="text" style="width:175px;height:20px;"/>    
+                </div>
+                <div class="part3">
+                    <span>数字号码:</span>
+                    <input id="input2" type="text" style="width:175px;height:20px;"/>
+                </div>
+                <div class="part4"> 
+                         <input id="Button1" onclick="validate()" type="button" value="确定"  style="height:20px;"/>			
+                </div>
+                <p>标签提示：马,老虎,猫,狗,熊猫,狮子,大象,熊,海狮,兔子,袋鼠,猪,鸡,羊,船,猴子,企鹅,蝴蝶,香蕉,青蛙,菠萝,鱼,鸟,路标,孔雀,花,飞机,汽车,自行车,蘑菇</p>
+                <p id="total"></p>
+                <p id="correct"></p>
+            </div>
+    		
+            </div>    
+        
+		
+        
+        <div id='end' align="center">
+          <span>Contact us for more details</span></br>
+        </div>
+        <div id='end1'>
+    	  <div align="center" >Copyright © 2016-2017 National College Student Information Securtity Contest</div>
+          <div align="center" >Zhixian Lin, Na Gai, Peixuan HE and Feng Han | All Rights Reserved</div>
+    	</div>
+	</body>
+</html>
