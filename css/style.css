@@ -447,7 +447,7 @@ section.services {
     padding: 5em 12em;
     text-align: left;
     background: #fff;
-   border-top: solid 6px #f4f4f4;
+   	border-bottom: 3px dashed #4a9aca;
    height:
 }
 ul.list-unstyled li {
@@ -477,7 +477,7 @@ ul.list-unstyled li {
 .news {
     padding: 5em 12em;
     background: #fff;
-   border-top: solid 6px #f4f4f4;
+   	border-bottom: 3px dashed #4a9aca;
 }
 .news img{
 	border-radius:5px;
@@ -542,6 +542,7 @@ section.slide-wrapper {
     padding: 5em 12em;
     text-align: left;
     background: #fff;
+	border-bottom: 3px dashed #4a9aca;
 }
 h4.main_hd {
     color: #777;
